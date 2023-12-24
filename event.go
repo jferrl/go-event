@@ -6,7 +6,7 @@ import "context"
 // Event defines the event type.
 type Event string
 
-// Listerner defines the callback type.
+// Listerner defines the callback function signature.
 type Listerner[T any] func(context.Context, T)
 
 // Emitter emits an event with associated data.
