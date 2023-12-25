@@ -35,10 +35,10 @@ jobs:
       with:
         access_token: ${{ github.token }}
 
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v5
       with:
         go-version: ${{ matrix.go-version }}
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     # Get values for cache paths to be used in later steps 
     - id: cache-paths
