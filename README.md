@@ -12,6 +12,8 @@ Go simple (zero deps) library for event handling. The main goal of this library 
 go-event is compatible with modern Go releases.
 This pkg use Go generics, so you need to use Go 1.18 or later.
 
+Take into account that each event listener is executed in a goroutine, so you need to take care with race conditions.
+
 ```go
 package main
 
