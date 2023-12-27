@@ -72,7 +72,7 @@ func TestEmitter_Emit(t *testing.T) {
 		},
 		{
 			name: "single event listerner executed synchronously",
-			e:    NewEmitter[*eventPayload](SyncEmitter),
+			e:    NewEmitter[*eventPayload](SyncEmitter[*eventPayload]),
 			args: args{
 				ctx:            ctx,
 				bootstrapEvent: "test",
