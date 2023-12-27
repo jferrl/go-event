@@ -70,6 +70,22 @@ func TestEmitter_Emit(t *testing.T) {
 			},
 			eventEmmited: true,
 		},
+		{
+			name: "single event listerner executed synchronously",
+			e:    NewEmitter[*eventPayload](SyncEmitter),
+			args: args{
+				ctx:            ctx,
+				bootstrapEvent: "test",
+				triggerEvent:   "test",
+				data:           &eventPayload{},
+			},
+			listeners: []Listerner[*eventPayload]{
+				func(ctx context.Context, data *eventPayload) {
+					data.called = true
+				},
+			},
+			eventEmmited: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
