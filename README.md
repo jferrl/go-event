@@ -75,6 +75,23 @@ func main() {
 }
 ```
 
+If you need to execute the event listeners synchronously, you can set SyncEmitter option.
+
+```go
+package main
+
+import "github.com/jferrl/go-event"
+
+// UserEvent .
+type UserEvent struct {
+ ID string
+}
+
+func main() {
+ emitter := event.NewEmitter[UserEvent](event.SyncEmitter[UserEvent])
+}
+```
+
 ## Bootstrap complex event listeners
 
 In some scenarios, you may need to bootstrap complex event listeners. For example, the listerner
