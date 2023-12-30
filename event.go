@@ -49,13 +49,15 @@ func (e *Emitter[T]) On(ev Event, l ...Listerner[T]) *Emitter[T] {
 }
 
 // Emit emits an event with associated data.
+// It does not block the caller.
 func (e *Emitter[T]) Emit(ctx context.Context, ev Event, data T) {
-	l := e.listeners[ev]
-	for _, f := range l {
-		if e.sync {
-			f(ctx, data)
-		} else {
-			go f(ctx, data)
+	go func(l []Listerner[T]) {
+		for _, f := range l {
+			if e.sync {
+				f(ctx, data)
+			} else {
+				go f(ctx, data)
+			}
 		}
-	}
+	}(e.listeners[ev])
 }
